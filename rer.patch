@@ -1,0 +1,16 @@
+Index: app/src/main/java/com/example/den4i/myapplication/HomeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/den4i/myapplication/HomeFragment.java	(date 1560435304000)
++++ app/src/main/java/com/example/den4i/myapplication/HomeFragment.java	(date 1560435882948)
+@@ -32,7 +32,7 @@
+         // TODO Auto-generated method stub
+         super.onStart();
+ 
+-        lcns = (EditText) findViewById(R.id.lcns);
++        lcns = (EditText) getActivity().findViewById(R.id.lcns);
+         name = (EditText) getActivity().findViewById(R.id.name);
+         add = (Button) getActivity().findViewById(R.id.add);
+         items = (ListView) getActivity().findViewById(R.id.items);

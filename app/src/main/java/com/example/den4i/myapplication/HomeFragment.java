@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // TODO Auto-generated method stub
         super.onStart();
 
-        lcns = (EditText) findViewById(R.id.lcns);
+        lcns = (EditText) getActivity().findViewById(R.id.lcns);
         name = (EditText) getActivity().findViewById(R.id.name);
         add = (Button) getActivity().findViewById(R.id.add);
         items = (ListView) getActivity().findViewById(R.id.items);
