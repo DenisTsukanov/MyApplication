@@ -23,7 +23,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
-        ListView listView = (ListView) view.findViewById(R.id.nav_home);
+        ListView listView = (ListView) view.findViewById(R.id.nav_home)
         return view;
     }
 
