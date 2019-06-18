@@ -11,23 +11,31 @@
         android:layout_alignParentStart="true"
         android:layout_toStartOf="@+id/lcns"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:textSize="20dp"
+        android:fontFamily="monospace"/>
 
     <TextView
         android:id="@+id/model"
-        android:textSize="12dp"
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="170dp"
         android:layout_marginTop="0dp"
-        tools:text="model" />
+        tools:text="model"
+        android:fontFamily="monospace"
+        style="@style/TextAppearance.AppCompat.Title"/>
     <TextView
         android:id="@+id/lcns"
         tools:text="lcns"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:fontFamily="monospace"
+        android:textSize="20dp"/>
 
 </RelativeLayout>

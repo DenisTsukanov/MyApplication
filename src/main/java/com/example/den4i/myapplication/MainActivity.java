@@ -69,21 +69,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-    public class CarAdapter extends ArrayAdapter<Car1> {
-
-        public CarAdapter() {
-            super(MainActivity.this, R.layout.fragment_home);
-        }
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            final View view = getLayoutInflater().inflate(R.layout.fragment_home, null);
-            final Car1 item = getItem(position);
-            ((TextView) view.findViewById(R.id.name)).setText(String.valueOf(item.owner));
-            ((TextView) view.findViewById(R.id.lcns)).setText(String.valueOf(item.license_plate));
-            ((TextView) view.findViewById(R.id.model)).setText(String.valueOf(item.model));
-            return view;
-        }
-
-    }
 }
