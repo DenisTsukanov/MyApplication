@@ -13,6 +13,7 @@ public class Car1 implements Comparable<Car1>
     String model;
     String owner;
     String license_plate;
+    String idCar;
     String parkingName;
 
     LinkedHashMap<LocalDate,LocalDate> dates = new LinkedHashMap<>();
@@ -59,11 +60,32 @@ public class Car1 implements Comparable<Car1>
         return lastEntry;
     }
 
-    Car1(String model, String owner, String license_plate)
+    Car1(String model, String owner, String license_plate,String id)
     {
         this.license_plate = license_plate;
         this.model = model;
         this.owner = owner;
+        this.idCar = id;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getLicense_plate() {
+        return license_plate;
+    }
+
+    public String getIdCar() {
+        return idCar;
+    }
+
+    public String getParkingName() {
+        return parkingName;
     }
 
     @Override

@@ -1,19 +1,14 @@
 package com.example.den4i.myapplication;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -68,22 +63,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
-    }
-    public class CarAdapter extends ArrayAdapter<Car1> {
-
-        public CarAdapter() {
-            super(MainActivity.this, R.layout.fragment_home);
-        }
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            final View view = getLayoutInflater().inflate(R.layout.fragment_home, null);
-            final Car1 item = getItem(position);
-            ((TextView) view.findViewById(R.id.name)).setText(String.valueOf(item.owner));
-            ((TextView) view.findViewById(R.id.lcns)).setText(String.valueOf(item.license_plate));
-            ((TextView) view.findViewById(R.id.model)).setText(String.valueOf(item.model));
-            return view;
-        }
-
     }
 }
