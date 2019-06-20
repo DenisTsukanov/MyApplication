@@ -16,8 +16,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -30,6 +33,12 @@ public class HomeFragment extends Fragment {
     RecyclerView spisok;
     EditText lcns;
     EditText name;
+    String mName;
+    String mLcns;
+
+    ArrayList<Car1> carList = new ArrayList<>();
+
+    CarAdapter adapter = new CarAdapter(carList);
 
     @Nullable
     @Override
@@ -37,17 +46,16 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.main_table, container, false);
         context = view.getContext();
 
-        databaseParkings = FirebaseDatabase.getInstance().getReference("parkings");
-
-        lcns = (EditText) view.findViewById(R.id.lcns);
-        name = (EditText) view.findViewById(R.id.name);
-        final Button add = (Button) view.findViewById(R.id.add);
+        databaseParkings = FirebaseDatabase.getInstance().getReference().child("parkings");
+        lcns = view.findViewById(R.id.lcns);
+        name = view.findViewById(R.id.name);
+        final Button add = view.findViewById(R.id.add);
         spisok = view.findViewById(R.id.items);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         spisok.setLayoutManager(layoutManager);
-        ArrayList<Car1> tmp = new ArrayList<>();
-        final CarAdapter adapter = new CarAdapter(tmp);
-        spisok.setAdapter(adapter);
+
+       readCars(adapter);
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,9 +66,39 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    public void readCars(final CarAdapter adapter){
+
+        databaseParkings.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                showData(dataSnapshot,adapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void showData(DataSnapshot dataSnapshot,CarAdapter adapter){
+
+        carList.clear();
+
+        for (DataSnapshot carSnapshot : dataSnapshot.getChildren()) {
+            Car1 car1 = carSnapshot.getValue(Car1.class);
+            carList.add(car1);
+        }
+
+        spisok.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+    }
+
     private void addCar(CarAdapter adapter) {
-        String mName = name.getText().toString();
-        String mLcns = lcns.getText().toString();
+        mName = name.getText().toString();
+        mLcns = lcns.getText().toString();
         if (TextUtils.isEmpty(mName)) {
 
             Toast.makeText(context, "You should enter a name", Toast.LENGTH_LONG).show();
@@ -71,8 +109,8 @@ public class HomeFragment extends Fragment {
 
         } else {
             String id = databaseParkings.push().getKey();
-            adapter.mCars.add(new Car1("test", mName, mLcns,id));
-            databaseParkings.child(id).setValue(adapter.mCars);
+            Car1 tmp = new Car1("test", mName, mLcns,id);
+            databaseParkings.child(id).setValue(tmp);
             adapter.notifyDataSetChanged();
         }
     }

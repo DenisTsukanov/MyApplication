@@ -60,7 +60,23 @@ public class Car1 implements Comparable<Car1>
         return lastEntry;
     }
 
-    Car1(String model, String owner, String license_plate,String id)
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public void setLicense_plate(String license_plate) {
+        this.license_plate = license_plate;
+    }
+
+    public void setIdCar(String idCar) {
+        this.idCar = idCar;
+    }
+
+    Car1(String model, String owner, String license_plate, String id)
     {
         this.license_plate = license_plate;
         this.model = model;
